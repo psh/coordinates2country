@@ -2,15 +2,17 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.21'
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 // OSSRH publishing instructions found at https://mrcurious.medium.com/publishing-your-android-kotlin-library-to-maven-central-in-2021-df263a4f2cbc
@@ -57,20 +59,24 @@ publishing {
         }
     }
 
-    repositories {
-        maven {
-
-            credentials {
-                username = "$NEXUS_USERNAME"
-                password = "$NEXUS_PASSWORD"
-            }
-
-            name = "Coordinates2Country"
-            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
-        }
-    }
+//    repositories {
+//        maven {
+//
+//            credentials {
+//                username = "$NEXUS_USERNAME"
+//                password = "$NEXUS_PASSWORD"
+//            }
+//
+//            name = "Coordinates2Country"
+//            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+//        }
+//    }
 }
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+kotlin {
+    jvmToolchain(17)
 }

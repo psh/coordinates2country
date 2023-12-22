@@ -6,11 +6,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests for coordinates2country.
+ * Tests for coordinates2country, ensuring it can be called correctly from JAVA
  */
 public class LibraryTest {
     @Test public void testOneCoordinate() {
         assertEquals("Germany", Coordinates2Country.country(50, 10));
+    }
+
+    @Test public void testOneQID() {
+        assertEquals("183", Coordinates2Country.countryQID(50, 10));
     }
 
     @Test public void testBlackPixel() {
